@@ -1,8 +1,8 @@
 package com.devsuperior.desvendas.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +19,14 @@ public class SaleController {
 	private SaleService saleservice;
 	
 	@GetMapping
-	public ResponseEntity<List<SaleDTO>> findAll(){
-		List<SaleDTO> list = saleservice.findAll();
+	public ResponseEntity<Page<SaleDTO>> findAll(Pageable pageable){
+		Page<SaleDTO> list = saleservice.findAll(pageable);
 		return ResponseEntity.ok(list);
 		
+		/*
+		public ResponseEntity<List<SaleDTO>> findAll(){
+			List<SaleDTO> list = saleservice.findAll();
+			return ResponseEntity.ok(list);
+		*/
 	}
 }

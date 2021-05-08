@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.devsuperior.desvendas.entities.Sale;
-import com.devsuperior.desvendas.entities.Seller;
 
 public class SaleDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -15,7 +14,7 @@ public class SaleDTO implements Serializable{
 	private Double amount;
 	private LocalDate date;;
 	
-	//private Seller seller;
+	private SellerDTO seller;
 	
 	
 	public SaleDTO() {
@@ -23,13 +22,13 @@ public class SaleDTO implements Serializable{
 	}
 
 
-	public SaleDTO(Long id, Integer visited, Integer deals, Double amount, LocalDate date, Seller seller) {
+	public SaleDTO(Long id, Integer visited, Integer deals, Double amount, LocalDate date, SellerDTO seller) {
 		this.id = id;
 		this.visited = visited;
 		this.deals = deals;
 		this.amount = amount;
 		this.date = date;
-		//this.seller = seller;
+		this.seller = seller;
 	}
 	
 	public SaleDTO(Sale entity) {
@@ -38,7 +37,7 @@ public class SaleDTO implements Serializable{
 		deals = entity.getDeals();
 		amount = entity.getAmount();
 		date = entity.getDate();
-		//seller = entity.getSeller();
+		seller = new SellerDTO(entity.getSeller());
 	}
 
 	public Long getId() {
@@ -90,4 +89,15 @@ public class SaleDTO implements Serializable{
 		this.date = date;
 	}
 
+
+	public SellerDTO getSeller() {
+		return seller;
+	}
+
+
+	public void setSeller(SellerDTO seller) {
+		this.seller = seller;
+	}
+
+	
 }
